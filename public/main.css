@@ -1,0 +1,8 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.center {
+    width: 15rem;
+    margin: 40px auto;
+}

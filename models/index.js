@@ -26,4 +26,4 @@ const sequelize = new Sequelize(`postgres://${config.db.user}:${config.db.passwo
 db.sequelize = sequelize
 db.Sequelize = Sequelize
 
-module.exports = db
+export default db;

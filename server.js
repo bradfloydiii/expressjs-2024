@@ -1,13 +1,15 @@
 import express from "express";
 import path from "path";
 // import bodyParser from "body-parser";
-import morgan from "morgan";
+// import morgan from "morgan";
 import cors from "cors";
 import dotenv from "dotenv";
 import { fileURLToPath } from "url";
 
 import logger from "./middleware/logger.js";
 import errorHandler from "./middleware/error.js";
+import notFound from "./middleware/notFound.js";
+
 import posts from "./routes/posts.js";
 import users from "./routes/users.js";
 
@@ -21,8 +23,8 @@ const port = process.env.PORT || 8000;
 const app = express();
 
 // middlewares
-app.use(morgan("dev"));
-//app.use(bodyParser.json()); // deprecated
+// app.use(morgan("dev")); // using logger middleware instead
+//app.use(bodyParser.json()); // deprecated for express.json()
 app.use(cors());
 
 // body parser middleware
@@ -31,8 +33,6 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(logger);
 
-
-
 // static directory
 app.use(express.static(path.join(__dirname, "/public")));
 
@@ -40,6 +40,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use("/api/posts", posts);
 app.use("/api/users", users);
 
+app.use(notFound);
 app.use(errorHandler);
 
 // start the server

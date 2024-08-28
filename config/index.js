@@ -1,15 +1,15 @@
-module.exports = {
+const config = {
 
-    port: process.env.PORT || 8082,
+    port: process.env.PORT || 8000,
 
     db: {
-        database: process.env.DB_NAME || 'mos',
-        user: process.env.DB_USER || 'postgres',
-        password:process.env.DB_PASS || 'mos',
+        database: process.env.DB_NAME || '',
+        user: process.env.DB_USER || '',
+        password:process.env.DB_PASS || '',
         options: {
-            dialect: process.env.DIALECT || 'postgres',
-            host: process.env.HOST || '3.60.34.186',
-            storage: '/logs/database.log'
+            dialect: process.env.DIALECT || '',
+            host: process.env.HOST || '',
+            storage: ''
         }
     },
 
@@ -18,3 +18,5 @@ module.exports = {
         return msg
     }
 }
+
+export default config;
